@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+.app h1{
+   text-align: center;
+   font-family: 'Lilita One';
+}
+
+.nav-bar{
+   padding-bottom: 0;
+   margin-bottom: 0;
+   font-family: 'Lilita One';
+   font-size: 20px;
+}
+

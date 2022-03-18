@@ -9,30 +9,34 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ShiftsController : ControllerBase
+   
+    public class ShiftsController : BaseApiController
     {
         private readonly StoreContext _context;
- 
+
         public ShiftsController(StoreContext context)
         {
             _context = context;
-            
+
         }
         [HttpGet]
         public async Task<ActionResult<List<Shift>>> GetShifts()
         {
-           return await _context.Shifts!.ToListAsync(); 
+            return await _context.Shifts!.ToListAsync();
 
-           
+
         }
 
-        [HttpGet("{id}")] // api/products/3
+        [HttpGet("{id}")]
         public async Task<ActionResult<Shift?>> GetShift(int id)
         {
-            return await _context.Shifts!.FindAsync(id);
+            
+            var shift = await _context.Shifts!.FindAsync(id);
+
+            if (shift == null) return NotFound();
+
+            return shift;
         }
-        
+
     }
 }

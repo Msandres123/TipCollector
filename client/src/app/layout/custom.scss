@@ -1,0 +1,9 @@
+//change theme
+
+ $theme-colors:(
+      "primary": #00ff63
+);
+
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~bootstrap/scss/bootstrap.scss';
+

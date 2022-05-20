@@ -10,8 +10,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import ServerError from '../errors/ServerError';
 import NotFound from '../errors/NotFound';
 import ContactPage from '../../features/contact/ContactPage';
+import Login from '../../features/account/Login';
+import Register from '../../features/account/Register';
+import { useAppDispatch } from '../store/configureStore';
+import { useEffect } from 'react';
+import { fetchCurrentUser } from '../../features/account/accountSlice';
 
 function App() {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchCurrentUser())
+  })
   return (
     <div className="app">
        <ToastContainer position="bottom-right" hideProgressBar/>
@@ -24,6 +33,8 @@ function App() {
           <Route exact path="/shift-collection" component={ShiftCollection} />
           <Route path="/shift-collection/:id" component={ShiftDetails} />
           <Route path="/server-error" component={ServerError} />
+          <Route path='/login' component={Login}/>
+          <Route path='/register' component={Register}/>
           <Route component={NotFound} />
         </Switch>
       </Container>

@@ -33,6 +33,7 @@ namespace API.Controllers
             return new UserDto
             {
                 Email = user.Email,
+                Username = user.UserName,
                 Token = await _tokenService.GenerateToken(user)
             };
         }
@@ -63,11 +64,12 @@ namespace API.Controllers
         [HttpGet("currentUser")]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var user = await _userManager.FindByNameAsync(User?.Identity?.Name);
 
             return new UserDto
             {
                 Email = user.Email,
+                Username = user.UserName,
                 Token = await _tokenService.GenerateToken(user)
             };
         }

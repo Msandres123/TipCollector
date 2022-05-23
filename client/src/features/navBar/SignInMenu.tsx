@@ -17,7 +17,7 @@ export default function SignInMenu() {
       </NavDropdown.Item>
     </Col>
     <Col>
-      <Nav.Link className="text-primary" href='/register'>
+      <Nav.Link className="text-primary" href='/create-shift'>
         <FaUserEdit size={30} />
         <p>Add Shift</p>
       </Nav.Link>

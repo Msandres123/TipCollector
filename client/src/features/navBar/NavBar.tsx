@@ -7,7 +7,6 @@ import SignInMenu from './SignInMenu';
 
 export default function NavBar() {
   const { user }: any = useAppSelector((state) => state.account);
-  console.log(user);
   return (
     <Navbar className="nav-bar" bg="dark" expand="lg">
       <Container>

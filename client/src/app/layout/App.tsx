@@ -15,6 +15,7 @@ import Register from '../../features/account/Register';
 import { useAppDispatch } from '../store/configureStore';
 import { useEffect } from 'react';
 import { fetchCurrentUser } from '../../features/account/accountSlice';
+import ShiftForm from '../../features/shiftCollection/ShiftForm';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -35,6 +36,7 @@ function App() {
           <Route path="/server-error" component={ServerError} />
           <Route path='/login' component={Login}/>
           <Route path='/register' component={Register}/>
+          <Route path='/create-shift' component={ShiftForm}/>
           <Route component={NotFound} />
         </Switch>
       </Container>

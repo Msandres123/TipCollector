@@ -35,7 +35,12 @@ export const collectionSlice = createSlice({
         shiftsLoaded: false,
         status: 'idle'
     }),
-    reducers: {},
+    reducers: {
+        setShift: (state, action) => {
+            shiftsAdapter.upsertOne(state, action.payload);
+            state.shiftsLoaded = false
+        }
+    },
     extraReducers: (builder => {
         builder.addCase(fetchShiftsAsync.pending, (state) => {
             state.status = 'pendingFetchShifts'
@@ -64,3 +69,5 @@ export const collectionSlice = createSlice({
 })
 
 export const shiftSelectors = shiftsAdapter.getSelectors((state: RootState) => state.collection)
+
+export const {setShift} = collectionSlice.actions

@@ -56,7 +56,27 @@ const requests = {
     get: (url: string) => axios.get(url).then(responseBody),
     post: (url: string, body: {}) => axios.post(url, body).then(responseBody),
     put: (url: string, body: {}) => axios.put(url, body).then(responseBody),
-    delete: (url: string) => axios.delete(url).then(responseBody)
+    delete: (url: string) => axios.delete(url).then(responseBody),
+    postForm: (url: string, data: FormData) => axios.post(url, data, {
+        headers: {'Content-type': 'multipart/form-data'}
+    }).then(responseBody),
+    putForm: (url: string, data: FormData) => axios.put(url, data, {
+        headers: {'Content-type': 'multipart/form-data'}
+    }).then(responseBody)
+}
+
+function createFormData(item: any) {
+    let formData = new FormData();
+    for (const key in item) {
+        formData.append(key, item[key])
+    } 
+    return formData;
+}
+
+const User = {
+    createShift: (shift: any) => requests.postForm('shifts', createFormData(shift)),
+    updateShift: (shift: any) => requests.putForm('shifts', createFormData(shift)),
+    deleteShift: (id: number) => requests.delete(`shifts/${id}`)
 }
 
 const ShiftCollection = {
@@ -81,7 +101,8 @@ const Account = {
 const agent = {
     ShiftCollection,
     TestErrors,
-    Account
+    Account,
+    User
 }
 
 export default agent

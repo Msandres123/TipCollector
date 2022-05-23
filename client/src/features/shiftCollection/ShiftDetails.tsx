@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import NotFound from '../../app/errors/NotFound';
 import LoadingComponents from '../../app/layout/LoadingComponents';
 import { useAppDispatch, useAppSelector } from '../../app/store/configureStore';
-import { currencyFormat } from '../../app/util/util';
+import { currencyFormat, dateFormat } from '../../app/util/util';
 import { fetchShiftAsync, shiftSelectors } from './collectionSlice';
 
 
@@ -23,11 +23,13 @@ export default function ShiftDetails() {
 
   if (!shift) return <NotFound/>
 
+
+
   return (
 
     <Card className="mx-auto mb-2" style={{ width: '18rem' }}>
     <Card.Body>
-      <Card.Title>Shift: {shift.shiftDay}</Card.Title>
+      <Card.Title>Shift: {dateFormat(shift.shiftDay)}</Card.Title>
       <Card.Text>Cash Tips: {currencyFormat(shift.cashTips)}</Card.Text>
       <Card.Text>
         Credit Card Tips: {currencyFormat(shift.creditCardTips)}

@@ -58,7 +58,7 @@ namespace API.Controllers
 
         [Authorize(Roles = "Member")]
         [HttpPut]
-        public async Task<ActionResult> UpdateShift(UpdateShiftDto shiftDto)
+        public async Task<ActionResult> UpdateShift([FromForm]UpdateShiftDto shiftDto)
         {
             var shift = await _context.Shifts!.FindAsync(shiftDto.Id);
 

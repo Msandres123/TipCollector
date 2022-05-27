@@ -1,22 +1,43 @@
 import { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import agent from '../../app/api/agent';
 
 export default function Register() {
-  // const history = useHistory();
+  const history = useHistory();
   const [validationErrors, setValidationErrors] = useState([]);
-  const {register, handleSubmit, formState: {isSubmitting, errors, isValid}} = useForm({
+  const {register, handleSubmit, setError, formState: {isSubmitting, errors, isValid}} = useForm({
     mode: "all"
   });
+
+  function handleApiErrors(errors: any) {
+    if (errors) {
+        errors.forEach((error: string) => {
+            if (error.includes('Password')) {
+                setError('password', { message: error })
+            } else if (error.includes('Email')) {
+                setError('email', { message: error })
+            } else if (error.includes('Username')) {
+                setError('username', { message: error })
+            }
+        });
+    }
+    console.log(errors)
+}
 
     
    
   return (
    <>
    <h3>Sing Up</h3>
-    <Form onSubmit={handleSubmit((data) => agent.Account.register(data).catch(error => setValidationErrors(error)))}>
+    <Form onSubmit={handleSubmit((data) => agent.Account.register(data)
+    .then(() => {
+                toast.success('Registration successful - you can now login')
+                history.push('/login')
+            })
+            .catch(error => handleApiErrors(error)))}>
       <Form.Group className="mb-3" >
         <Form.Label>User Name</Form.Label>
         <Form.Control type="username" placeholder="User Name"   {...register('username')} required/>

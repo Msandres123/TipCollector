@@ -39,8 +39,8 @@ namespace API.Data
                 new Shift
                 {
                     User = "Mikey123",
-				    UserId = 1,
-				    ShiftDay = "1/22/22",
+				    UserId = "e60ebe10-dcfd-49d5-8706-954b3535c0a9",
+				    ShiftDay = "2022-01-22",
                     CreditCardTips = 12057,
                     CashTips =  3200,
 
@@ -49,8 +49,8 @@ namespace API.Data
                 new Shift
                 {
 				    User = "Mikey123",
-				    UserId = 1,
-                    ShiftDay= "1/12/22",
+				    UserId = "e60ebe10-dcfd-49d5-8706-954b3535c0a9",
+                    ShiftDay= "2022-01-12",
                    	CreditCardTips = 13523,
                    	CashTips = 4500,
                    	ShiftLength = 5.5,
@@ -59,8 +59,8 @@ namespace API.Data
                 new Shift
                 {
 				    User = "Mikey123",
-				    UserId = 1,
-                    ShiftDay = "1/15/22",
+				    UserId = "e60ebe10-dcfd-49d5-8706-954b3535c0a9",
+                    ShiftDay = "2022-01-15",
                    	CreditCardTips = 12267,
                    	CashTips =  5400,
                     ShiftLength = 6.1
@@ -69,8 +69,8 @@ namespace API.Data
                 new Shift
                 {
 				    User = "Mikey123",
-				    UserId = 1,
-                    ShiftDay = "2/1/22",
+				    UserId = "e60ebe10-dcfd-49d5-8706-954b3535c0a9",
+                    ShiftDay = "2022-02-01",
                    	CreditCardTips = 11234,
                    	CashTips = 9000,
                    	ShiftLength = 4.9
@@ -79,8 +79,8 @@ namespace API.Data
                 new Shift
                 {
 				    User = "Mikey123",
-				    UserId = 1,
-                    ShiftDay= "2/3/22",
+				    UserId = "e60ebe10-dcfd-49d5-8706-954b3535c0a9",
+                    ShiftDay= "2022-02-02",
                     CreditCardTips = 16078,
                     CashTips = 1500,
                     ShiftLength = 4.5
@@ -89,7 +89,7 @@ namespace API.Data
 
             foreach (var shift in shifts)
             {
-                context.Shifts!.Add(shift);
+                context.Shifts?.Add(shift);
             }
 
             context.SaveChanges();

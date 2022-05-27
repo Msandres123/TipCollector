@@ -17,14 +17,14 @@ namespace API.DTOs
         public string? ShiftDay { get; set; }
          [Required]
          [Range(100, Double.PositiveInfinity)]
-        public string? CashTips { get; set; }
+        public long? CashTips { get; set; }
          [Required]
          [Range(100, Double.PositiveInfinity)]
-        public string? CreditCardTips { get; set; }
-        public string? TotalTips => (string?)CreditCardTips + (string?)CashTips;
+        public long? CreditCardTips { get; set; }
+        public long? TotalTips => (int?)CreditCardTips + (int?)CashTips;
          [Required]
-        public string? ShiftLength { get; set;}
+        public double? ShiftLength { get; set;}
 
-        public DateTime DateCreated { get; set; } 
+        public DateTime DateCreated { get; set; } = DateTime.UtcNow;
     }
 }

@@ -18,14 +18,15 @@ async function handleSubmitData(data: FieldValues) {
     let response: Shift;
     response = await agent.User.createShift(data);
     dispatch(setShift(response))
+    console.log(data)
     history.push('/shift-collection')
     
   } catch(error) {
       console.log(error)
+      console.log(data)
   }
 }  
 
-console.log(user?.id)
 
   return (
       <>

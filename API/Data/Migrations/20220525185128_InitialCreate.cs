@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace API.Data.Migrations
+namespace API.Migrations
 {
-    public partial class IdentityAdded : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,6 +46,25 @@ namespace API.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Shifts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    User = table.Column<string>(type: "TEXT", nullable: true),
+                    UserId = table.Column<string>(type: "TEXT", nullable: true),
+                    ShiftDay = table.Column<string>(type: "TEXT", nullable: true),
+                    CashTips = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreditCardTips = table.Column<long>(type: "INTEGER", nullable: false),
+                    ShiftLength = table.Column<double>(type: "REAL", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shifts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -157,12 +176,12 @@ namespace API.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "35a8b017-c7b1-462d-9ff4-574770a4e495", "fa16d95c-f208-4dd7-bebe-795b87d65dc5", "Member", "MEMBER" });
+                values: new object[] { "1ad2d335-9589-4813-a796-57eccf4aa091", "e2c17e55-43db-4595-b701-86e667b10317", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "f96d0172-0a5b-46b7-9977-1c6769d35b6d", "be81d618-a0b0-4a95-acac-5b3cdbc2d4cf", "Admin", "ADMIN" });
+                values: new object[] { "c84df75f-d0d1-4c23-bd19-9151c86b7393", "078b8148-4a68-400c-9387-c7b912047bc4", "Member", "MEMBER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -218,6 +237,9 @@ namespace API.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Shifts");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

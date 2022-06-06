@@ -23,8 +23,9 @@ export default function Register() {
                 setError('username', { message: error })
             }
         });
+        console.log(errors)
     }
-    console.log(errors)
+    
 }
 
     
@@ -42,18 +43,23 @@ export default function Register() {
         <Form.Label>User Name</Form.Label>
         <Form.Control type="username" placeholder="User Name"   {...register('username')} required/>
         <Form.Text className="text-muted">
+          {errors?.username?.message}
         </Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" >
-        <Form.Label>User Name</Form.Label>
+        <Form.Label>Email</Form.Label>
         <Form.Control type="email" placeholder="Email"   {...register('email')} required/>
         <Form.Text className="text-muted">
           We'll never share your email with anyone else.
+          {errors?.email?.message}
         </Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password"   {...register('password')} required/>
+       <Form.Text>
+        {errors?.password?.message}
+       </Form.Text>
       </Form.Group>
       {validationErrors.length > 0 && 
           <Alert variant='danger'>

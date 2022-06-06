@@ -6,7 +6,7 @@ import { store } from "../store/configureStore";
 
 const sleep = () => new Promise(resolve => setTimeout(resolve, 500));
 
-axios.defaults.baseURL = 'http://localhost:5000/api/';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 const responseBody = (response: AxiosResponse) => response.data;
 
@@ -20,7 +20,7 @@ axios.interceptors.request.use(config => {
 })
 
 axios.interceptors.response.use(async response => {
-    await sleep();
+   if (process.env.NODE_ENV === 'development')await sleep()
     return response
 }, (error: AxiosError) => {
     const {data, status} = error.response!;

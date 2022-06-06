@@ -1,12 +1,12 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Card, Form } from 'react-bootstrap';
 import { FieldValues, useForm } from 'react-hook-form';
-import { useHistory, useParams } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import NotFound from '../../app/errors/NotFound';
 import LoadingComponents from '../../app/layout/LoadingComponents';
 import { useAppDispatch, useAppSelector } from '../../app/store/configureStore';
 import { currencyFormat, dateFormat } from '../../app/util/util';
-import { fetchShiftAsync, setShift, shiftSelectors } from './collectionSlice';
+import { fetchShiftAsync, removeShift, setShift, shiftSelectors } from './collectionSlice';
 import { Shift } from '../../app/models/shift';
 import agent from '../../app/api/agent';
 
@@ -19,10 +19,20 @@ export default function ShiftDetails() {
   const shift = useAppSelector(state => shiftSelectors.selectById(state, id));
   const {status} = useAppSelector(state => state.collection)
   const { register, handleSubmit, setValue } = useForm({});
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!shift) dispatch(fetchShiftAsync(parseInt(id)))
   }, [shift, id, dispatch])
+
+  async function handleDeleteShift(id: number) {
+    setLoading(true)
+    await agent.User.deleteShift(id)
+    .then(() => dispatch(removeShift(id)))
+      .catch(error => console.log(error))
+      .finally(() => setLoading(false));
+    history.push('/shift-collection')
+  }
 
 
   if (status.includes('pending')) return <LoadingComponents/>
@@ -70,7 +80,14 @@ export default function ShiftDetails() {
     }}
     >
       Submit
+    </Button> {" "}
+    <Button className="mt-3"  variant="red" type='submit'
+    onClick={() =>handleDeleteShift(shift.id) }
+    >
+      Delete Shift
     </Button>
+    <Link to="/shift-collection"><p>View Your Shifts</p></Link>
   </Form>
+  
   )
 }

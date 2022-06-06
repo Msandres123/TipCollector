@@ -10,6 +10,11 @@
    font-family: 'Lilita One';
 }
 
+.home p{
+   text-align: center;
+   font-family: 'Lilita One';
+}
+
 .nav-bar{
    padding-bottom: 0;
    margin-bottom: 0;

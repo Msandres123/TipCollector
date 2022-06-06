@@ -1,7 +1,8 @@
 //change theme
 
  $theme-colors:(
-      "primary": #00ff63
+      "primary": #00ff63,
+      "red" : rgb(245, 5, 5)
 );
 
 @import '~bootstrap/dist/css/bootstrap.css';

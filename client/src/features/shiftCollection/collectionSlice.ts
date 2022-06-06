@@ -11,7 +11,7 @@ export const fetchShiftsAsync = createAsyncThunk<Shift[]>(
         try {
             return await agent.ShiftCollection.list()
         } catch (error: any) {
-            return thunkAPI.rejectWithValue({error: error.data});
+            return thunkAPI.rejectWithValue({ error: error.data });
         }
 
     }
@@ -23,7 +23,7 @@ export const fetchShiftAsync = createAsyncThunk<Shift, number>(
         try {
             return await agent.ShiftCollection.details(shiftId)
         } catch (error: any) {
-            return thunkAPI.rejectWithValue({error: error.data})
+            return thunkAPI.rejectWithValue({ error: error.data })
         }
 
     }
@@ -38,6 +38,10 @@ export const collectionSlice = createSlice({
     reducers: {
         setShift: (state, action) => {
             shiftsAdapter.upsertOne(state, action.payload);
+            state.shiftsLoaded = false
+        },
+        removeShift: (state, action) => {
+            shiftsAdapter.removeOne(state, action.payload);
             state.shiftsLoaded = false
         }
     },
@@ -70,4 +74,4 @@ export const collectionSlice = createSlice({
 
 export const shiftSelectors = shiftsAdapter.getSelectors((state: RootState) => state.collection)
 
-export const {setShift} = collectionSlice.actions
+export const { setShift, removeShift } = collectionSlice.actions

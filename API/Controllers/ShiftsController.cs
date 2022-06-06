@@ -74,7 +74,7 @@ namespace API.Controllers
         }
         
         [Authorize(Roles = "Member")]
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteShift(int id)
         {
             var shift = await _context.Shifts!.FindAsync(id);

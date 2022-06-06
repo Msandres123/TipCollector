@@ -15,7 +15,7 @@ const initialState: AccountState = {
     user: null
 }
 
-export const singInUser = createAsyncThunk<User, FieldValues>(
+export const signInUser = createAsyncThunk<User, FieldValues>(
     'account/signInUser',
     async (data, thunkAPI) => {
         try {
@@ -69,11 +69,11 @@ export const accountSlice = createSlice({
             toast.error('Session expired - please login again');
             history.push('/');
         });
-        builder.addMatcher(isAnyOf(singInUser.fulfilled, fetchCurrentUser.fulfilled), (state, action) => {
+        builder.addMatcher(isAnyOf(signInUser.fulfilled, fetchCurrentUser.fulfilled), (state, action) => {
             state.user = action.payload;
         })
-        builder.addMatcher(isAnyOf(singInUser.rejected, fetchCurrentUser.rejected), (state, action) => {
-            console.log(action.payload)
+        builder.addMatcher(isAnyOf(signInUser.rejected, fetchCurrentUser.rejected), (state, action) => {
+            throw action.payload
         })
     })
 })

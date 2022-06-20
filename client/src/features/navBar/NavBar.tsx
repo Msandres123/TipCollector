@@ -1,6 +1,4 @@
-import { Navbar, Container, Nav, Image, Row, Col } from 'react-bootstrap';
-import { FaGlassCheers, FaSignInAlt, FaUserEdit } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Navbar, Container, Nav, Image } from 'react-bootstrap';
 import { useAppSelector } from '../../app/store/configureStore';
 import NotSignedIn from './NotSignedIn';
 import SignInMenu from './SignInMenu';

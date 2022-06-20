@@ -1,4 +1,4 @@
-import { Container, ListGroup, Overlay, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Container, ListGroup } from 'react-bootstrap';
 import { Shift } from '../../app/models/shift';
 import ShiftCard from './ShiftCard';
 

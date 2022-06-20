@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import { Alert, Button, ButtonGroup, Container, ListGroupItem } from 'react-bootstrap'
-import { List } from 'react-bootstrap-icons';
+import { useState } from 'react'
+import { Alert, Button, ButtonGroup, Container } from 'react-bootstrap'
 import agent from '../../app/api/agent'
 
 export default function AboutPage() {

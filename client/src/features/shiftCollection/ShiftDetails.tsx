@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Button, Card, Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { FieldValues, useForm } from 'react-hook-form';
 import { Link, useHistory, useParams } from 'react-router-dom'
 import NotFound from '../../app/errors/NotFound';
 import LoadingComponents from '../../app/layout/LoadingComponents';
 import { useAppDispatch, useAppSelector } from '../../app/store/configureStore';
-import { currencyFormat, dateFormat } from '../../app/util/util';
 import { fetchShiftAsync, removeShift, setShift, shiftSelectors } from './collectionSlice';
 import { Shift } from '../../app/models/shift';
 import agent from '../../app/api/agent';
@@ -44,12 +43,10 @@ export default function ShiftDetails() {
       let response: Shift;
       response = await agent.User.updateShift(data);
       dispatch(setShift(response))
-      console.log(data)
       history.push('/shift-collection')
       
     } catch(error) {
         console.log(error)
-        console.log(data)
     }
   }  
 

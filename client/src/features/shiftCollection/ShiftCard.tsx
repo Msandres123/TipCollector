@@ -20,7 +20,7 @@ export default function ShiftCard({ shift }: Props) {
       <Card.Text>Total Tips: {currencyFormat(shift.totalTips)}</Card.Text>
       <Card.Text>Hours Worked: {shift.shiftLength}</Card.Text>
       <Card.Text>
-        Hourly Wage: {currencyFormat(shift.totalTips / shift.shiftLength)}{' '}
+        Tips Per Hour: {currencyFormat(shift.totalTips / shift.shiftLength)}{' '}
       </Card.Text>
       <Link to={`/shift-collection/${shift.id}`}>
       <Button  variant='primary'  >Edit Shift</Button>

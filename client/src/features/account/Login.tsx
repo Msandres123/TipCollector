@@ -24,7 +24,6 @@ export default function Login() {
     
     }
       catch (error) {
-       console.log(error)
        toast.error("Could not recognize user or password")
     }
      
@@ -41,9 +40,6 @@ export default function Login() {
             placeholder="User Name"
             {...register('username')}
           />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3">

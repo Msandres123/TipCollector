@@ -8,7 +8,7 @@ import agent from '../../app/api/agent';
 export default function Register() {
   const history = useHistory();
   const [validationErrors, setValidationErrors] = useState([]);
-  const {register, handleSubmit, setError, formState: {isSubmitting, errors, isValid}} = useForm({
+  const {register, handleSubmit, setError, formState: {errors, isValid}} = useForm({
     mode: "all"
   });
 
@@ -57,9 +57,7 @@ export default function Register() {
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password"   {...register('password')} required/>
-       <Form.Text>
-        {errors?.password?.message}
-       </Form.Text>
+        <Form.Text>{errors?.password?.message}</Form.Text>
       </Form.Group>
       {validationErrors.length > 0 && 
           <Alert variant='danger'>

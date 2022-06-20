@@ -15,6 +15,16 @@
    font-family: 'Lilita One';
 }
 
+.home-link{
+   text-decoration: none;
+   color: black;
+}
+
+.home-link:hover{
+   text-decoration: none;
+   color: #00ff63;
+}
+
 .nav-bar{
    padding-bottom: 0;
    margin-bottom: 0;

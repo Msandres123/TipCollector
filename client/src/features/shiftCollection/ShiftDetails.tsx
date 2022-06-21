@@ -19,6 +19,8 @@ export default function ShiftDetails() {
   const {status} = useAppSelector(state => state.collection)
   const { register, handleSubmit, setValue } = useForm({});
   const [loading, setLoading] = useState(false);
+  const [creditCardTips, setCreditCardTips] = useState<number>(shift!.creditCardTips);
+  const [cashTips, setCashTips] = useState<number>(shift!.cashTips);
 
   useEffect(() => {
     if (!shift) dispatch(fetchShiftAsync(parseInt(id)))
@@ -60,11 +62,11 @@ export default function ShiftDetails() {
     </Form.Group>
     <Form.Group controlId="cashTips">
       <Form.Label>Cash Tips</Form.Label>
-      <Form.Control type="number" {...register("cashTips")} required defaultValue={shift.cashTips}/>
+      <Form.Control type="number" onChange={(e) => setCashTips(parseInt(e.target.value) * 100)} required defaultValue={cashTips/100}/>
     </Form.Group>
     <Form.Group controlId="creditTips">
       <Form.Label>Credit Card Tips Tips</Form.Label>
-      <Form.Control type="number" {...register("creditCardTips")} required defaultValue={shift.creditCardTips}/>
+      <Form.Control type="number" onChange={(e) => setCreditCardTips(parseInt(e.target.value) * 100)} required defaultValue={creditCardTips/100}/>
     </Form.Group>
     <Form.Group controlId="shiftLength">
       <Form.Label>Length of Shift</Form.Label>
@@ -74,6 +76,8 @@ export default function ShiftDetails() {
     onClick={() => {
       setValue('user', user?.username, { shouldValidate: true })
       setValue('Id', shift.id, { shouldValidate: true })
+      setValue('cashTips', cashTips, { shouldValidate: true })
+      setValue('creditCardTips', creditCardTips, { shouldValidate: true })
     }}
     >
       Submit
